@@ -19,12 +19,9 @@ from shapely.geometry import LineString
 birds_df = pd.read_csv("/content/purple_martin.csv", parse_dates=['timestamp'])
 print("There are {} different birds in the dataset.".format(birds_df["tag-local-identifier"].nunique()))
 
-birds_df.head()
-
 """**Creating the GeoDataFrame**"""
 
 birds = gpd.GeoDataFrame(birds_df, geometry=gpd.points_from_xy(birds_df["location-long"], birds_df["location-lat"]))
-
 birds.crs = {'init' :'epsg:4326'}
 
 """##Plot the data
